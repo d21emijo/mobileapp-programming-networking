@@ -15,9 +15,5 @@ public class RecyclerViewItem {
     public String getTitle() {
         return title;
     }
-    ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
-            new RecyclerViewItem("Matterhorn"),
-            new RecyclerViewItem("Mont Blanc"),
-            new RecyclerViewItem("Denali")
-    ));
+
 }
