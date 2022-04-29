@@ -24,10 +24,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String TAG = "==>";
 
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +33,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         new JsonTask(this).execute(JSON_URL);
 
 
-
-
+        ArrayList<Mountain> m;
 
 
         ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
@@ -48,6 +43,16 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         ));
 
 
+
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
+            @Override
+            public void onClick(RecyclerViewItem item) {
+                Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RecyclerView view = findViewById(R.id.recycler_view);
+        view.set
 
 
     }
@@ -60,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Log.d(TAG,json);
 
         Gson gson = new Gson();
-        Type type = new TypeToken<List<com.example.readjsonfromfiledemo.Mountain>>() {}.getType();
-        List<com.example.readjsonfromfiledemo.Mountain> listOfMountains = gson.fromJson(json, type);
+        Type type = new TypeToken<List<Mountain>>() {}.getType();
+        List<Mountain> listOfMountains = gson.fromJson(json, type);
 
         Log.d(TAG,"Number of element " + listOfMountains.size() );
         Log.d(TAG , "element 0 "+ listOfMountains.get(0).toString());

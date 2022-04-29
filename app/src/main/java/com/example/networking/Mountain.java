@@ -1,4 +1,4 @@
-package com.example.readjsonfromfiledemo;
+package com.example.networking;
 
 import androidx.annotation.NonNull;
 

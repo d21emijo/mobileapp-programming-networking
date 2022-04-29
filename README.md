@@ -1,10 +1,10 @@
 
 # Rapport
 
-
+todo
     
 [x]  Add a `RecyclerView` to your layout
-[]   Add a `ArrayList<Mountain>` as a member variable in your activity
+[x]   Add a `ArrayList<Mountain>` as a member variable in your activity
 []    Add a `RecyclerView.Adapter` as a member variable in your activity
     Create a RecyclerView.Adapter and a RecyclerView.ViewHolder
     Use getJson() to download your json data by changing the JSON_URL and write code in onPostExecute().
