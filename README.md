@@ -1,9 +1,15 @@
 
 # Rapport
 
-todo
-    
-- [x]   Add a `RecyclerView` to your layout
+
+## skapa recycler view utifrån json
+
+
+
+
+
+
+### recyclerview
 
 i våran activity_main.xml så har vi skapat en recyclerview, denna xmlfil representerar alltså vad som ska visas i våran MainActivity. (context=".MainActivity")
 
@@ -18,23 +24,49 @@ i våran activity_main.xml så har vi skapat en recyclerview, denna xmlfil repre
         app:layout_constraintTop_toTopOf="parent" />
 ```
 
-- [x]   Add a `ArrayList<Mountain>` as a member variable in your activity
+
+
+### json
+
+I koden skapar vi en gson från våran Json data och en lista av berg.
+
+```
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<Mountain>>() {}.getType();
+        List<Mountain> listOfMountains = gson.fromJson(json, type);
+```
+vi hämtar listan från url och sparar denna som nedan i JSON_URL
+
+```
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
+```
+
+därefter skapar vi en ny Json av denna url så vi kan använda den i java.
+
+```
+ new JsonTask(this).execute(JSON_URL);
+
+```
 
 
 
 
 
 
-- [x]   Add a `RecyclerView.Adapter` as a member variable in your activity
+### skicka vidare mha adapter
 
 
 ```
+private RecyclerView recyclerView; //skapa variabel
 private RecyclerViewAdapter recyclerViewAdapter; //skapa variabel
 ```
 
 
 
-- [x]   Create a RecyclerView.Adapter and a RecyclerView.ViewHolder
+### skaffa utrymme
+
+viewholder räknar ut hur mycket plats som kommer att gå åt och sparar plats för listan av berg som ska visas.
+
 
 ```
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MountainViewHolder> {
@@ -64,34 +96,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
-- [x]   Use getJson() to download your json data by changing the JSON_URL and write code in onPostExecute().
 
-I koden i figuren nedan skapar vi en gson från våran Json data 
+
+
+
+
+
+
+
+
+
 
 ```
-        Gson gson = new Gson();
-        Type type = new TypeToken<List<Mountain>>() {}.getType();
-        List<Mountain> listOfMountains = gson.fromJson(json, type);
+ private List<Mountain> items = new ArrayList<>();
 ```
-
-- [x]   Use the FamousPeaksJSON URL
-
-```
-    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
-```
-
-
-
-- [x]   Hint: Use `adapter.notifyDataSetChanged();` after updating the list to let the adapter know that it should update the contents of the RecyclerView
-
-```
-        recyclerViewAdapter.notifyDataSetChanged();     //uppdatera
-
-```
-
-
-- [x] Display the names of the mountains in the `RecyclerView` 
-
 
 ![image](https://user-images.githubusercontent.com/102797583/168656631-a3bbf233-0722-47af-a8d9-f279205e700d.png)
 
